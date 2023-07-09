@@ -13,7 +13,7 @@ $client_secret = ''; //Секретный ключ
 $redirect_uri = ''; //URL перенаправления
 $authorization_code = ''; //Код авторизации
 $subDomain = ''; //Домен вашего аккаунта
-
+$url='https://'.$subDomain.'.amocrm.ru/api/v4/';
 // Авторизация OAuth 2.0
 $auth_url = 'https://'.$subDomain.'.amocrm.ru/oauth2/access_token';
 $post_data = [
@@ -35,7 +35,7 @@ $access_token = json_decode($response, true)['access_token'];
 
 
 // Создание контакта
-$contact_url = 'https://'.$subDomain.'.amocrm.ru/api/v4/contacts';
+$contact_url = $url.'contacts';
 $post_data = [
     'post_data' => [
         'name' => $contact->getName(),
@@ -88,7 +88,7 @@ if ($response) {
 
 // Создание сделки
 
-$deal_url = 'https://ilya754.amocrm.ru/api/v4/leads';
+$deal_url = $url.'leads';
 $post_data = [
     'post_data' => [
         // Если потребуются манипуляции с названием сделки
@@ -126,7 +126,7 @@ if ($response) {
 $dealId = $lead_id; // ID сделки, к которой вы хотите добавить контакт
 $contactId = $contact_id; // ID контакта, который вы хотите добавить
 
-$apiUrl = 'https://ilya754.amocrm.ru/api/v4/leads/' . $dealId . '/link';
+$apiUrl = $url.'leads/' . $dealId . '/link';
 
 $data = [
     'post_data' => [
